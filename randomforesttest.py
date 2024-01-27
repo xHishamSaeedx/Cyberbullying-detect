@@ -43,7 +43,7 @@ def randomforestpredict(model , text):
   df = cv.transform([test_data]).toarray()
   output = model.predict(df)
   print(output)
-  if output[0] == "No hate and offensive speech":
-    return 0
-  else:
-    return 1
+  probabilities = model.predict_proba(df)
+  print(f"randomforest : {probabilities}")
+  return probabilities[0]
+

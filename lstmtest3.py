@@ -136,15 +136,16 @@ def lstm_predict(model , text):
     predictions = model.predict(f_test)
 
 
-    cutoff = 0.1
+    # cutoff = 0.1
     ftest['pred_sentiment']= predictions
-    print(ftest)
-    ftest['pred_sentiment'] = np.where((ftest.pred_sentiment >= cutoff),1,ftest.pred_sentiment)
-    ftest['pred_sentiment'] = np.where((ftest.pred_sentiment < cutoff),0,ftest.pred_sentiment)
+    # print(f"LSTM : {ftest}")
+    # ftest['pred_sentiment'] = np.where((ftest.pred_sentiment >= cutoff),1,ftest.pred_sentiment)
+    # ftest['pred_sentiment'] = np.where((ftest.pred_sentiment < cutoff),0,ftest.pred_sentiment)
 
-    #processed tweets categorized as hate speech
-    pd.set_option('display.max_colwidth', None)
-    ftest[ftest['pred_sentiment']==1]
-    return int(ftest['pred_sentiment'].iloc[0])
+    # #processed tweets categorized as hate speech
+    # pd.set_option('display.max_colwidth', None)
+    # ftest[ftest['pred_sentiment']==1]
+
+    return [ftest['pred_sentiment'].iloc[0] , 1- ftest['pred_sentiment'].iloc[0]]
 
 
